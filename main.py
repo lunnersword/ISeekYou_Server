@@ -135,7 +135,7 @@ class ChatProtocal(basic.LineReceiver):
         if globalName.debug:
             print msg
         self.sendLine(msg)
-        self.transport.loseConnection()
+       # self.transport.loseConnection()
 
 
     def tryLogin(self, data):
@@ -154,6 +154,8 @@ class ChatProtocal(basic.LineReceiver):
         self.avatar = avatar
         self.logout = logout
         self.factory.userProtocols[self.name] = self
+        if globalName.debug:
+            print "Login success: "
         msg = self.factory.commands["login"] + " " + "success" + " " + ":EOL" + " "
         self.sendLine(msg)
         #self.transport.write(msg)
@@ -174,7 +176,7 @@ class ChatProtocal(basic.LineReceiver):
             print failure
 
         #time.sleep(2)
-        self.transport.loseConnection()
+        #self.transport.loseConnection()
         #reactor.stop()
 
     def parseData(self, data):
